@@ -13,7 +13,15 @@ className="text-4xl sm:text-5xl md:text-6xl font-medium xl-leading-[95px] max-w-
 >Turning imagination into {" "}
  <span className="bg-gradient-to-r from-[#5044E5] to-[#4d8cea] bg-clip-text text-transparent">digital</span> impact </h1>
 <p className="text-sm sm:text-lg font-medium text-gray-500 dark:text-white/75 pb-3"> creatting a meaningful connections and turning big ideas into reality</p>
+    <div className="relative">
+      <img src={assets.hero_img} className="w-full  sm:w-xl md:w-4xl lg:w-5xl"/>
+    <img src={assets.bgImage1} className="absolute -top-60 -right-5 sm:-top-80 md:-top-100 md:-right-10 lg:-top-130 lg:-right-30 -z-1"/>
+    
     </div>
+    
+    </div>
+
+
   )
 }
 
