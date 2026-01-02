@@ -4,7 +4,7 @@ import { teamData } from '../images/assets'
 
 const Team = () => {
   return (
-    <div className=' container max-auto max-w-7xl flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-800 dark:text-white'>
+    <div className=' container mx-auto max-w-7xl flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-800 dark:text-white'>
       <Title title='Meet the team' desc='A passionate team of digital experts dedicated to your brands success.'/>
         
 
