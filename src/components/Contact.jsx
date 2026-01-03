@@ -2,8 +2,10 @@ import React from 'react'
 import Title from './Title'
 import assets from '../images/assets'
 import toast from 'react-hot-toast'
+import { motion } from 'motion/react'
 
 const Contact = () => {
+  const Contactmotion=motion.form;
 
   const onSubmit = async (event) => {
     event.preventDefault()
@@ -34,14 +36,19 @@ const Contact = () => {
   return (
     <div
       id='contactus'
-      className='container mx-auto max-w-7xl flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 pt-20 text-gray-700 dark:text-white'
+      className='container mx-auto max-w-7xl mt-10 mb-10 flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 pt-20 text-gray-700 dark:text-white'
     >
       <Title
         title='Reach out to us'
         desc='From strategy to execution, we craft digital solutions that move your business forward.'
       />
 
-      <form onSubmit={onSubmit} className='grid sm:grid-cols-2 gap-3 sm:gap-5 max-w-2xl w-full'>
+      <Contactmotion
+      initial={{  opacity: 0 ,y:20 }}
+  whileInView={{  opacity: 1 ,y:0}}
+  transition={{duration:0.6, ease: 'easeOut'}}
+  viewport={{once:true}}
+      onSubmit={onSubmit} className='grid sm:grid-cols-2 gap-3 sm:gap-5 max-w-2xl w-full'>
         
         <div>
           <p className='mb-2 font-medium text-sm'>Your Name</p>
@@ -89,7 +96,7 @@ const Contact = () => {
           Submit
           <img src={assets.arrow_icon} alt="" className='w-4' />
         </button>
-      </form>
+      </Contactmotion>
     </div>
   )
 }

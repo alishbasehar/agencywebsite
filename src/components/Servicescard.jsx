@@ -1,11 +1,18 @@
 import React, { useState } from 'react'
+import { motion } from "motion/react";
+ 
 
-const Servicescard = ({ service }) => {
+const Servicescard = ({ service,index }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
-
+const Servicesmotion=motion.div;
   return (
-    <div
-      className="relative max-w-lg m-4 rounded-xl group"
+    <Servicesmotion
+    initial={{opacity:0,y:20}}
+    whileInView={{opacity:1,y:0}}
+    transition={{duration:0.5, delay:index*0.2} }
+     viewport={{once:true}}
+
+      className=" container max-auto max-w-7xl relative  m-4 mt-15 rounded-xl group"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         setPosition({
@@ -41,7 +48,7 @@ const Servicescard = ({ service }) => {
           </p>
         </div>
       </div>
-    </div>
+    </Servicesmotion>
   )
 }
 

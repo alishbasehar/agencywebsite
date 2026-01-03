@@ -1,8 +1,10 @@
 import React from 'react'
 import Title from './Title'
 import assets from '../images/assets'
+import { motion } from 'motion/react'
 
 const Ourwork = () => {
+    const Workmotion=motion.div;
     const workdata =[
 
 
@@ -26,22 +28,31 @@ const Ourwork = () => {
         
     ]
   return (
-    <div id='ourwork' className=' container mx-auto max-w-7xl 
+    <div id='ourwork' className=' container mx-auto max-w-7xl mt-10
     
     flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-700 dark:text-white'>
         
         <Title title='our latest work' desc='From strategy to execution, we craft digital solutions that move your business forward.'/>
         
-        <div className='grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-5 max-w-5xl'>
+        <div
+        
+
+        className='grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-5 max-w-5xl'>
 
 {workdata.map((work,index)=>(
        
-    <div key={index}  className='hover:scale-102 duration-500 transition-all cursor-pointer'>
+    <Workmotion 
+    
+    initial={{opacity:0,y:20}}
+    whileInView={{opacity:1,y:0}}
+    transition={{duration:0.5, delay:index*0.2} }
+     viewport={{once:true}}
+    key={index}  className='hover:scale-102 duration-500 transition-all cursor-pointer'>
 
         <img src={work.image} className='w-full rounded-2xl'/>
 <h3 className='mt-3 mb-2 text-lg font-semibold'>{work.title}</h3>
         <p className='text-sm opacity-60'>{work.description}</p>
-         </div>
+         </Workmotion>
 
 
         ))

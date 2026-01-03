@@ -1,16 +1,18 @@
 import { useState } from "react";
 import assets from "../images/assets";
 import Theme from "./Theme";
+import { motion } from "framer-motion";
 
 const Navbar = ({ theme, settheme }) => {
+  const MotionHeader = motion.header;
   const [sidemenu, setsidemenu] = useState(false);
 
   return (
-    <header className="w-full fixed top-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl">
-      
+    <MotionHeader   initial={{  opacity: 0 ,y:-50 }}
+  whileInView={{  opacity: 1 ,y:0}}
+  transition={{duration:0.6, ease: 'easeOut'}} className="w-full fixed top-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl">
       {/* INNER CONTAINER – SAME AS FOOTER */}
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-4 flex justify-between items-center font-medium">
-        
         {/* LOGO */}
         <img
           src={theme === "dark" ? assets.logo_dark : assets.logo}
@@ -35,16 +37,32 @@ const Navbar = ({ theme, settheme }) => {
             alt="close"
           />
 
-          <a onClick={() => setsidemenu(false)} href="#hero" className="hover:border-b">
+          <a
+            onClick={() => setsidemenu(false)}
+            href="#hero"
+            className="hover:border-b"
+          >
             Home
           </a>
-          <a onClick={() => setsidemenu(false)} href="#services" className="hover:border-b">
+          <a
+            onClick={() => setsidemenu(false)}
+            href="#services"
+            className="hover:border-b"
+          >
             Services
           </a>
-          <a onClick={() => setsidemenu(false)} href="#ourwork" className="hover:border-b">
+          <a
+            onClick={() => setsidemenu(false)}
+            href="#ourwork"
+            className="hover:border-b"
+          >
             Our Work
           </a>
-          <a onClick={() => setsidemenu(false)} href="#contactus" className="hover:border-b">
+          <a
+            onClick={() => setsidemenu(false)}
+            href="#contactus"
+            className="hover:border-b"
+          >
             Contact Us
           </a>
         </nav>
@@ -70,7 +88,7 @@ const Navbar = ({ theme, settheme }) => {
           </a>
         </div>
       </div>
-    </header>
+    </MotionHeader>
   );
 };
 
