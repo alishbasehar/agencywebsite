@@ -5,7 +5,6 @@ import Hero from "./components/Hero";
 import Trust from "./components/Trust";
 import Services from "./components/Services";
 import Ourwork from "./components/Ourwork";
-
 import Team from "./components/Team";
 import Contact from "./components/Contact";
 import { Toaster } from "react-hot-toast";
@@ -16,7 +15,23 @@ function App() {
   const outlineRef = useRef(null);
   const mouse = useRef({ x: 0, y: 0 });
   const position = useRef({ x: 0, y: 0 });
+
+  // ✅ Desktop check
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+
   useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // ✅ Cursor effect (desktop only)
+  useEffect(() => {
+    if (!isDesktop) return;
+
     const handleMouseMove = (e) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
@@ -29,13 +44,17 @@ function App() {
       position.current.y += (mouse.current.y - position.current.y) * 0.1;
 
       if (dotRef.current && outlineRef.current) {
-        dotRef.current.style.transform = `translate3d(${
-          mouse.current.x - 6
-        }px, ${mouse.current.y - 6}px, 0)`;
+        dotRef.current.style.transform = `translate3d(
+          ${mouse.current.x - 6}px,
+          ${mouse.current.y - 6}px,
+          0
+        )`;
 
-        outlineRef.current.style.transform = `translate3d(${
-          position.current.x - 20
-        }px, ${position.current.y - 20}px, 0)`;
+        outlineRef.current.style.transform = `translate3d(
+          ${position.current.x - 20}px,
+          ${position.current.y - 20}px,
+          0
+        )`;
       }
 
       requestAnimationFrame(animate);
@@ -46,17 +65,17 @@ function App() {
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [isDesktop]);
 
+  // Theme
   const [theme, settheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+    localStorage.getItem("theme") || "light"
   );
 
   return (
-    <div className="dark:bg-black ">
+    <div className="dark:bg-black">
       <Toaster />
       <Navbar theme={theme} settheme={settheme} />
-
       <Hero />
       <Trust />
       <Services />
@@ -64,15 +83,22 @@ function App() {
       <Team />
       <Contact />
       <Footer theme={theme} />
-      <div
-        ref={outlineRef}
-        className="fixed top-0 left-0 h-10 w-10 rounded-full border border-primary pointer-events-none z-[9999]"
-        style={{ transition: "transform 0.1s ease-out" }}
-      ></div>
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 h-3 w-3 rounded-full bg-primary pointer-events-none z-[9999]"
-      ></div>
+
+      {/* ✅ Custom Cursor (Desktop only) */}
+      {isDesktop && (
+        <>
+          <div
+            ref={outlineRef}
+            className="fixed top-0 left-0 h-10 w-10 rounded-full border border-primary pointer-events-none z-[9999]"
+            style={{ transition: "transform 0.1s ease-out" }}
+          ></div>
+
+          <div
+            ref={dotRef}
+            className="fixed top-0 left-0 h-3 w-3 rounded-full bg-primary pointer-events-none z-[9999]"
+          ></div>
+        </>
+      )}
     </div>
   );
 }
