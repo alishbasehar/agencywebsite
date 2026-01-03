@@ -25,7 +25,7 @@ const Footer = ({ theme }) => {
 
             <ul className="flex flex-col gap-3 dark:text-gray-400">
               <li>
-                <a href="#hero" className="hover:text-primary">
+                <a href="#" className="hover:text-primary">
                   Home
                 </a>
               </li>

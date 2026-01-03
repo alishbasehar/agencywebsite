@@ -39,7 +39,7 @@ const Navbar = ({ theme, settheme }) => {
 
           <a
             onClick={() => setsidemenu(false)}
-            href="#hero"
+            href="#"
             className="hover:border-b"
           >
             Home
