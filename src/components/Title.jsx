@@ -3,7 +3,7 @@ import React from 'react'
 
 
 const Title = ({title,desc}) => {
- const Titlemotion= motion.h2  
+ const Titlemotion = motion.h2  
     
   return (
     <div>

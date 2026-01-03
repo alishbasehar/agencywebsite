@@ -12,7 +12,7 @@ const Servicesmotion=motion.div;
     transition={{duration:0.5, delay:index*0.2} }
      viewport={{once:true}}
 
-      className=" container max-auto max-w-7xl relative  m-4 mt-15 rounded-xl group"
+      className=" container max-auto max-w-7xl relative  mt-15 rounded-xl group"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect()
         setPosition({
@@ -37,7 +37,7 @@ const Servicesmotion=motion.div;
           <img
             src={service.icon}
             alt={service.title}
-            className="max-w-24 bg-white dark:bg-gray-900 rounded-full m-2"
+            className="max-w-20 bg-white dark:bg-gray-900 rounded-full "
           />
         </div>
 
